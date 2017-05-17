@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.logical.LogicalDesign>
+   <object objectType="Entity" objectID="D2D1F2E0-E56B-4758-D576-F006B6BCFE2E" name="Medicoes" seqName="seg_0"/>
+   <object objectType="Entity" objectID="60F9C346-2771-CEE8-EC4E-10870D5C4233" name="Sensors" seqName="seg_0"/>
+   <object objectType="Relation" objectID="EDBF3BD3-0354-E13C-5637-CFC1721D77B8" name="rel_sensor_medicao" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.logical.LogicalDesign>

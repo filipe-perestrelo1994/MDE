@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="rel_sensor_medicao" directorySegmentName="seg_0" id="EDBF3BD3-0354-E13C-5637-CFC1721D77B8">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 13:59:23 UTC</createdTime>
+<ownerDesignName>1Lab</ownerDesignName>
+<engineerTo>
+<item key="9D6FB0F2-E960-759D-B3AF-EB9098D32E40" value="true"/>
+</engineerTo>
+<sourcePk>26554FD4-DA02-CEA3-E090-E444A9E5635A</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>60F9C346-2771-CEE8-EC4E-10870D5C4233</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D2D1F2E0-E56B-4758-D576-F006B6BCFE2E</targetEntity>
+<transferable>true</transferable>
+</Relation>

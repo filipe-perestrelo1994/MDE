@@ -1,0 +1,290 @@
+
+
+
+:- use_module(library(http/thread_httpd)).
+:- use_module(library(http/http_dispatch)).
+:- use_module(library(http/http_parameters)).
+:-['golog2.pl']. % use golog, same as consult('golog2.pl')
+
+
+:- http_handler('/somar', somar, []).
+:- http_handler('/pquery', pquery, []).
+
+
+:-dynamic rectangulo/5.
+:-dynamic cat/3.
+:-dynamic mouse/5.
+:-dynamic limits/4.
+:-dynamic cheese/3.
+
+
+:-set_prolog_flag(report_error,true).
+:-set_prolog_flag(unknown,error).
+
+
+
+start_server(Port) :-
+	http_server(http_dispatch, [port(Port)]).
+
+
+
+
+%http://localhost:8000/somar?x=1&y=2
+somar(Request):-
+	http_parameters(Request,
+			[
+			  x(X,[default(10),number]),
+
+			  y(Y,[default(20),number])
+
+			]),
+	format('Content-type: text/html~n~n'),
+	Z is X+Y,
+	writeln(Z).
+
+
+
+
+/*
+
+http://localhost:8000/pquery?q=findall((A,B,C,D), rectangulo(A,B,C,D), L)
+Q='rectangulo(A,B,C,D)',term_to_atom(Query,Q), term_variables(Query,Vars), functor(Query,Nome, Nargs),findall(V, (Query,V=..[Nome|Vars]), L).
+
+*/
+pquery(Request):-
+	http_parameters(Request,
+	     [
+	          q(Q,[defalt(dummy_fact)])
+	     ]),
+
+	atom_to_term(Q, Term, Bindings),
+
+
+	current_output(Current_out),
+	tell(user),
+
+	%findall(Bindings, Term,L),
+
+
+	catch(
+	   (
+	     findall(Bindings, Term,L),
+	     Resultado=ok
+	   )
+	   ,
+             error(Err,_Context)
+	   ,
+	   (
+	     format('While trying ~w, got \'~w\'',[Term, Err]),
+	     Resultado=Err
+	   )
+
+	),
+
+	told,
+	set_output(Current_out),
+
+	escrever_resultado(Resultado, Term, L).
+
+
+
+
+escrever_resultado(ok, _, L):-
+	format('Content-type: text/html~n~n'),
+	write(ok),write('<BR>'),
+	forall(
+		member(LL,L),
+		(
+		  forall( (member(_=B,LL),ground(B)),(write(B),write('<BR>'))  ),
+		  write('<BR>')
+	      )
+	),!.
+
+
+
+escrever_resultado(Resultado, Term, _):-
+	format('Content-type: text/html~n~n'),
+	write(error),write('<BR>'),
+	format('While trying ~w, got \'~w\'',[Term, Resultado]).
+
+
+
+
+
+write_lista([]).
+
+write_lista([X|RestoLista]):-
+	writeln(X),
+	write_lista(RestoLista).
+
+
+
+%:-dynamic frame_/1.
+
+
+gravar_jogo:-
+	tell('game_state.pl'),
+	listing(rectangulo),
+	listing(cheese),
+	listing(limits),
+	show_kb,
+	told,
+	write('jogo guardado em '), write('game_state.pl'),
+	!.
+
+ler_jogo:-
+	retractall(rectangulo(_,_,_,_,_)),
+	retractall(cheese(_,_,_)),
+	retractall(limits(_,_,_,_)),
+	delete_kb,
+	consult('game_state.pl'),
+	write('jogo recuperado de '), write('game_state.pl').
+
+
+
+
+:-dynamic action_list/1.
+
+add_action(Id, Action,Value):-
+	action_list(List),
+	retractall(action_list(_)),
+	assert(action_list([ (Id,Action,Value)|List])),
+	!.
+
+add_action(Id, Action):-
+	\+ action_list(_),
+	assert(action_list([(Id,Action)])).
+
+get_action(Id, Action):-
+	action_list( [(Id,Action)|List]),
+	retractall(action_list(_)),
+	assert(action_list(List)).
+
+
+get_action( 0, no_action):-
+	\+ action_list(_).
+
+get_action( 0, no_action):-
+	action_list([]).
+
+
+
+get_actions(List):-
+	action_list( List),
+	retractall(action_list(_)),
+	assert(action_list([])),
+	!.
+
+
+get_actions( []):-
+	\+ action_list(_).
+
+
+
+:-dynamic event_list/1.
+
+add_event(Id, Event):-
+	event_list(List),
+	retractall(event_list(_)),
+	assert(event_list([ (Id,Event)|List])),
+	!.
+
+add_event(Id, Event):-
+	\+ event_list(_),
+	assert(event_list([(Id,Event)])).
+
+
+get_event(Id, Event):-
+	event_list( [(Id,Event)|List]),
+	retractall(event_list(_)),
+	assert(event_list(List)).
+
+
+get_event( 0, no_event):-
+	\+ event_list(_).
+
+get_event( 0, no_event):-
+	event_list([]).
+
+
+get_events(List):-
+	event_list( List),
+	retractall(event_list(_)),
+	assert(event_list([])),
+	!.
+
+
+
+get_events( []):-
+	\+ event_list(_).
+
+
+
+create_animal_from_simulator(ID, Name, Species,X,Y):-
+	create_animal_frame(ID, Name, Species,X,Y).
+
+get_animal_state(ID, Species, X, Y,Speed):-
+	clause(frame_(_), true),
+	frame_(F),
+	Term1=..[F,value_,id,ID],
+	%Term2=..[F,value_,x,X],
+	%Term3=..[F,value_,y,Y],
+	Term2=..[F,value_,position,(X,Y) ],
+	Term3=..[F,value_,species,Species],
+	Term4=..[F,value_,speed,Speed],
+	Term1,
+	Term2,
+	Term3,
+	Term4.
+
+
+get_animals_state(L):-
+	findall( s(ID, Species, X, Y,Speed),
+		 get_animal_state(ID, Species, X, Y,Speed),	  L),
+	!.
+
+get_animals_state([]).
+
+get_existing_cheese(L):-
+	clause(cheese(_,_,_),true),
+	findall( c(ID, X, Y), cheese(ID,X,Y), L),
+	!.
+
+get_existing_cheese([]).
+
+
+:-dynamic run_step/0.
+run_step.
+
+
+set_limits(Xi, Yi, Xf, Yf):-
+	retractall(limits(_,_,_,_)),
+	assert(limits(Xi,Yi,Xf,Yf)).
+
+
+
+
+
+
+fruitid('Apple', 'Granny Smith', 1).
+fruitid('Pear', 'Bartlett', 2).
+
+type_of_fruit(ID):-
+       fruitid(Fruit, _, ID), write(Fruit).
+
+while_running_some_program(Term,X):-
+    catch(
+	(
+	Term,
+	X=ok
+	)
+	 ,
+        error(Err,_Context)
+	 ,
+             (
+	        format('You done goofed! ~w\n', [Err]),
+	        X=Err
+	     )
+
+     ).
+

@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="21B239A5-9DBA-C07D-3F5B-0B01AD290C56" name="Sensors">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>60F9C346-2771-CEE8-EC4E-10870D5C4233</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_sensor" id="D6F63505-E309-C41D-DBD8-A8BD31EC6559">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>C6C54E46-9582-F226-BE8D-533D73C02343</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descricao" id="16B0171E-98A1-D482-45C0-96C262FA5332">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>CAB29EAF-0AEC-45BE-13FC-56FC5246DE00</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="unidade_medicao" id="5A5A4134-F68C-2E97-A570-7E7376B6B485">
+<createdBy>filip_000</createdBy>
+<createdTime>2015-03-09 15:29:06 UTC</createdTime>
+<generatorID>85B6EA88-13A0-28D8-90CE-BEBE164F69C7</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="77AC16F3-BB26-7ED2-11EB-67066FD9D033" name="Sensors_PK">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>26554FD4-DA02-CEA3-E090-E444A9E5635A</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D6F63505-E309-C41D-DBD8-A8BD31EC6559"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

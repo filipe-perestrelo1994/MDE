@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="701DE916-A1B5-C57D-D5B4-4B518FC75F42" name="Medicoes_Sensors_FK">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>EDBF3BD3-0354-E13C-5637-CFC1721D77B8</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<containerWithKeyObject>6B242BEB-5437-70CB-985E-02C83E995F71</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>22203EC8-9090-345D-CA7C-B38B8385B90F</localFKIndex>
+<keyObject>77AC16F3-BB26-7ED2-11EB-67066FD9D033</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

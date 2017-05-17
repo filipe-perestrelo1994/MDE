@@ -1,0 +1,103 @@
+:-include(prolog_server).
+
+:-style_check(-discontiguous).
+
+
+
+create_animal_frame(ID, Name, Species,X,Y):-
+	new_frame(Name),
+	new_slot(Name, id, ID),
+	new_slot(Name, species, Species),
+	new_slot(Name, position, (X,Y) ),
+	new_slot(Name, speed, 1),
+	new_slot(Name, step_x, 1),
+	new_slot(Name, step_y, 1),
+	new_demon(Name,step_x, controla_step_x, if_read, after ,alter_value),
+	new_demon(Name,step_y, controla_step_y, if_read, after ,alter_value),
+
+	new_demon(Name, position, comer_queijo, if_write, after, side_effect).
+
+
+create_animal(ID, Name, Species,X,Y):-
+	create_animal_frame(ID, Name, Species,X,Y).
+
+
+
+/**********************************************/
+
+run_step:-
+
+	forall(
+	    frame_(Animal),
+	    (	movimentar_animal(Animal); true)
+	).
+
+
+
+
+
+movimentar_animal(Animal):-
+	get_value(Animal, position, (X,Y)  ),
+	get_value(Animal, step_x, Step_x),
+	get_value(Animal, step_y, Step_y), % começar por fazer o mesmo para o y
+
+	X2 is Step_x+X,
+	Y2 is Step_y+Y,
+
+	new_value( Animal, position, (X2,Y2)).
+
+
+
+
+
+%demonio
+controla_step_x(Animal,step_x, V1, V2):-
+	% writeln(verificando),
+	get_value(Animal, position, (X,_) ),  % ler a posicao x do animal
+	limits(Xi, _,Xf, _),      % obter limites x do ecran de jogo
+	(  X >= Xf , Sinal= -1 ;   % animal está à direita? inverte sentido.
+	   X<Xi    , Sinal= +1     % animal está à esquerda? inverte sentido.
+	),
+	V2 is Sinal*abs(V1),
+	new_value(Animal, step_x, V2),
+	!.
+
+% caso contrario está dentro dos limites
+controla_step_x(_,step_x, V1, V1).
+	%writeln(dentro_dos_limites).
+
+
+
+controla_step_y(Animal,step_y, V1, V2):-
+	% writeln(verificando),
+	get_value(Animal, position, (_,Y) ),  % ler a posicao x do animal
+	limits(_, Yi,_, Yf),      % obter limites x do ecran de jogo
+	(  Y >= Yf , Sinal= -1 ;   % animal está à direita? inverte sentido.
+	   Y<Yi    , Sinal= +1     % animal está à esquerda? inverte sentido.
+	),
+	V2 is Sinal*abs(V1),
+	new_value(Animal, step_y, V2),
+	!.
+
+% caso contrario está dentro dos limites
+controla_step_y(_,step_y, V1, V1).
+	%writeln(dentro_dos_limites).
+
+
+
+comer_queijo(Animal, position, P1,_):-
+	%writeln('demonio a correr...').
+	get_value(Animal, species, mouse),
+	%get_value(Animal, position,(Xm,Ym)),
+	( Xm,Ym) = P1,
+	cheese(ID, Xq, Yq),
+	Dist is sqrt((Xm-Xq)^2+(Ym-Yq)^2),
+	Dist<20,
+	retract(cheese(ID, _,_)),
+	!.
+
+comer_queijo(Animal, position, _,_):-
+	get_value(Animal, species, mouse).
+
+
+

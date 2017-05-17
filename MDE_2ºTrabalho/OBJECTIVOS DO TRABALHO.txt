@@ -1,0 +1,13 @@
+1º-Por os transportes nos percursos e apagar nas cidades
+
+2º-Distancias, interligar paises
+
+3º-Definir preços minimos para um percurso,cidades do litoral, cidades de um pais
+
+4º-Definir horarios no percurso
+
+5º-Intinerario mais rapido,
+
+6º-Traçar percursos de Interesse entre as cidades
+
+7º-Básicos da criação/eliminação de percursos e/ou cidades

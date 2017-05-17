@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6B242BEB-5437-70CB-985E-02C83E995F71" name="Medicoes">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>D2D1F2E0-E56B-4758-D576-F006B6BCFE2E</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="data_medicao" id="E0A60384-5B1A-17F7-0C16-9FD61A951394">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>9E3CAC25-191D-CEAF-7059-271E06F2A841</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="valor_medido" id="41F84ADE-CA21-3949-383D-4A1B643E6228">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>D662A2D9-E0EC-9671-40D7-69D232545918</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Sensors_id_sensor" id="3ED530C7-A916-AEBE-E77E-E16096044FC8">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>43B267BF-923A-AA01-79FD-85B3B2ADEE24</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<delegate>D6F63505-E309-C41D-DBD8-A8BD31EC6559</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="701DE916-A1B5-C57D-D5B4-4B518FC75F42" referredColumn="D6F63505-E309-C41D-DBD8-A8BD31EC6559"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="31FD5C68-5500-FE4F-51FC-7B15FB468E3F" name="Medicoes_PK">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>B0FEFB1B-32FD-D316-6986-C0990D63398E</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3ED530C7-A916-AEBE-E77E-E16096044FC8"/>
+<colUsage columnID="E0A60384-5B1A-17F7-0C16-9FD61A951394"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="22203EC8-9090-345D-CA7C-B38B8385B90F" name="Medicoes_Sensors_FK">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 14:13:44 UTC</createdTime>
+<generatorID>EDBF3BD3-0354-E13C-5637-CFC1721D77B8</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3ED530C7-A916-AEBE-E77E-E16096044FC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

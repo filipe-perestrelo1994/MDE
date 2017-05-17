@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D2D1F2E0-E56B-4758-D576-F006B6BCFE2E" name="Medicoes">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 13:35:43 UTC</createdTime>
+<ownerDesignName>1Lab</ownerDesignName>
+<engineerTo>
+<item key="9D6FB0F2-E960-759D-B3AF-EB9098D32E40" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="data_medicao" id="9E3CAC25-191D-CEAF-7059-271E06F2A841">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 13:36:08 UTC</createdTime>
+<ownerDesignName>1Lab</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="9D6FB0F2-E960-759D-B3AF-EB9098D32E40" value="false"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+</Attribute>
+<Attribute name="valor_medido" id="D662A2D9-E0EC-9671-40D7-69D232545918">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 13:37:28 UTC</createdTime>
+<ownerDesignName>1Lab</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="9D6FB0F2-E960-759D-B3AF-EB9098D32E40" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+</Attribute>
+<Attribute name="id_sensor" id="43B267BF-923A-AA01-79FD-85B3B2ADEE24">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 13:59:45 UTC</createdTime>
+<generatorID>EDBF3BD3-0354-E13C-5637-CFC1721D77B8</generatorID>
+<ownerDesignName>1Lab</ownerDesignName>
+<engineerTo>
+<item key="9D6FB0F2-E960-759D-B3AF-EB9098D32E40" value="true"/>
+</engineerTo>
+<referedAttribute>C6C54E46-9582-F226-BE8D-533D73C02343</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B0FEFB1B-32FD-D316-6986-C0990D63398E" name="Medicoes PK">
+<createdBy>André</createdBy>
+<createdTime>2015-03-09 13:58:44 UTC</createdTime>
+<ownerDesignName>1Lab</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="9D6FB0F2-E960-759D-B3AF-EB9098D32E40" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>43B267BF-923A-AA01-79FD-85B3B2ADEE24</attributeRef>
+<attributeRef>9E3CAC25-191D-CEAF-7059-271E06F2A841</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
